@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Product = require("./models/product.model.js");
 const productRoutes = require("./routes/product.route.js");
+const cors = require("cors");
 const app = express();
 
 // app.use(express.json()); is a middleware function in an Express.js application that allows the server to parse incoming JSON request bodies.
@@ -9,6 +10,7 @@ const app = express();
 //     express.json(): This built-in middleware parses incoming requests with JSON payloads, making the parsed data available in req.body.
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 app.use("/api/products", productRoutes);
 
 app.get("/", (req, res) => {
@@ -21,8 +23,8 @@ mongoose
   )
   .then(() => {
     console.log("connected to database");
-    app.listen(3000, () => {
-      console.log("server is running on port 3000");
+    app.listen(5000, () => {
+      console.log("server is running on port 5000");
     });
   })
   .catch(() => {
